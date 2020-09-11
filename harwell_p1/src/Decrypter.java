@@ -49,7 +49,7 @@ public class Decrypter {
         }
 
 
-        //converts the integers into strings and combines them to form the final 4 digit encrypted code
+        //converts the integers into strings and combines them to form the final 4 digit decrypted code
         String finalCode = convertIntegerToString(intArray[0]) + convertIntegerToString(intArray[1]) +
                 convertIntegerToString(intArray[2]) + convertIntegerToString(intArray[3]);
 
