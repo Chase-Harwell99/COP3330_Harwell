@@ -53,6 +53,7 @@ public class Encrypter{
         String finalCode = convertIntegerToString(intArray[0]) + convertIntegerToString(intArray[1]) +
                     convertIntegerToString(intArray[2]) + convertIntegerToString(intArray[3]);
 
+        
         return finalCode;
     }
 }
