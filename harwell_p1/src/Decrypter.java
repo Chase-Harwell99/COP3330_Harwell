@@ -1,4 +1,4 @@
-public class Encrypter{
+public class Decrypter {
 
     public Integer convertStringtoInteger(String code){
         int intval = Integer.parseInt(code);
@@ -17,12 +17,12 @@ public class Encrypter{
         return digit;
     }
 
-    public Integer encryptNumber(Integer inputDigit) {
-        int convertedNum = (inputDigit+7)%10;
+    public Integer decryptNumber(Integer inputDigit) {
+        int convertedNum = (inputDigit+3)%10;
         return convertedNum;
     }
 
-    public String encrypt(String code) {
+    public String decrypt(String code) {
 
         int number = convertStringtoInteger(code);
         Integer[] intArray = new Integer[4];
@@ -31,11 +31,6 @@ public class Encrypter{
         for(int i=0; i<4; i++){
             intArray[3-i] = getDigit(number); //uses 3-i because algorithm gets digits from right to left
             number = number/10;
-        }
-
-        //encrypts each number in the integer array
-        for(int j=0; j<4; j++){
-            intArray[j] = encryptNumber(intArray[j]);
         }
 
         //swaps integers 1 and 3
@@ -48,10 +43,16 @@ public class Encrypter{
         intArray[1] = intArray[3];
         intArray[3] = temp2;
 
+        //decrypts each number in the integer array
+        for(int j=0; j<4; j++){
+            intArray[j] = decryptNumber(intArray[j]);
+        }
+
 
         //converts the integers into strings and combines them to form the final 4 digit encrypted code
         String finalCode = convertIntegerToString(intArray[0]) + convertIntegerToString(intArray[1]) +
-                    convertIntegerToString(intArray[2]) + convertIntegerToString(intArray[3]);
+                convertIntegerToString(intArray[2]) + convertIntegerToString(intArray[3]);
+
 
         return finalCode;
     }
