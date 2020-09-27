@@ -12,9 +12,10 @@ public class BodyMassIndex {
 
     public double calculateBMI(double height, double weight) {
 
-        //Calculates the BMI and then rounds to the nearest tenth
+        //Calculates the BMI
         double BMI = 703*weight/(height*height);
 
+        //Sets the decimal value to a number with only a decimal value in tenths place
         int BMIasInt = (int) BMI;
         double decimalValue = BMI - BMIasInt;
         double decimalTimesTen = decimalValue*10;
@@ -24,6 +25,7 @@ public class BodyMassIndex {
         double decimalAsIntRounded;
         double finalBMI;
 
+        //Rounds value upward if decimal value is 0.5 or greater and rounds down if less than 0.5
         if(decimalTimesTen-newDecimalAsInt >= 0.5) {
             decimalAsIntRounded = newDecimalAsInt + 1;
             double roundedDecimal = decimalAsIntRounded/10;
@@ -41,9 +43,10 @@ public class BodyMassIndex {
 
     public String category(double height, double weight) {
 
-        //Calculates the BMI and then rounds to the nearest tenth
+        //Calculates the BMI
         double BMI = 703*weight/(height*height);
 
+        //Sets the decimal value to a number with only a decimal value in tenths place
         int BMIasInt = (int) BMI;
         double decimalValue = BMI - BMIasInt;
         double decimalTimesTen = decimalValue*10;
@@ -53,6 +56,7 @@ public class BodyMassIndex {
         double decimalAsIntRounded;
         double finalBMI;
 
+        //Rounds value upward if decimal value is 0.5 or greater and rounds down if less than 0.5
         if(decimalTimesTen-newDecimalAsInt >= 0.5) {
             decimalAsIntRounded = newDecimalAsInt + 1;
             double roundedDecimal = decimalAsIntRounded/10;
@@ -64,6 +68,7 @@ public class BodyMassIndex {
             finalBMI = preRoundedBMI/10;
         }
 
+        //Calculate which category the calculated BMI falls under
         if(finalBMI < 18.5)
             return "Underweight";
 

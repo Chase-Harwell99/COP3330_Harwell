@@ -54,8 +54,6 @@ public class App {
                 System.out.println("Please enter Y for yes or N for no.");
             }
         }
-
-        //^^^come back to handling if the user doesn't answer with a y or n
         return input;
     }
 
