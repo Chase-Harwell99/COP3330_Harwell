@@ -22,12 +22,11 @@ public class BodyMassIndex {
         int newDecimalAsInt = (int) decimalTimesTen;
 
 
-        double decimalAsIntRounded;
         double finalBMI;
 
         //Rounds value upward if decimal value is 0.5 or greater and rounds down if less than 0.5
         if(decimalTimesTen-newDecimalAsInt >= 0.5) {
-            decimalAsIntRounded = newDecimalAsInt + 1;
+            double decimalAsIntRounded = newDecimalAsInt + 1;
             double roundedDecimal = decimalAsIntRounded/10;
             finalBMI = BMIasInt + roundedDecimal;
         }
@@ -53,12 +52,11 @@ public class BodyMassIndex {
         int newDecimalAsInt = (int) decimalTimesTen;
 
 
-        double decimalAsIntRounded;
         double finalBMI;
 
         //Rounds value upward if decimal value is 0.5 or greater and rounds down if less than 0.5
         if(decimalTimesTen-newDecimalAsInt >= 0.5) {
-            decimalAsIntRounded = newDecimalAsInt + 1;
+            double decimalAsIntRounded = newDecimalAsInt + 1;
             double roundedDecimal = decimalAsIntRounded/10;
             finalBMI = BMIasInt + roundedDecimal;
         }
