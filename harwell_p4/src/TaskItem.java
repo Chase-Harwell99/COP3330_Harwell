@@ -10,42 +10,41 @@ public class TaskItem {
         if(isValidTitle(title)) {
             this.title = title;
         } else {
-            throw new InvalidTitleException("The title must be at least 1 character long. Please try again.");
-        }
-
-        if(isValidDescription(description)) {
-            this.description = description;
-        } else {
-            throw new InvalidDescriptionException("The description must be at least 0 characters long");
+            throw new InvalidTitleException("The title must be at least 1 character long. Please press enter and re-enter task info.");
         }
 
         if(isValidDate(date)) {
             this.date = date;
         } else {
-            throw new InvalidDateException("The date must fit the format YYYY-MM-DD. Please re-enter the date");
+            throw new InvalidDateException("The date must satisfy the format YYYY-MM-DD. Please press enter and re-enter task info.");
         }
 
+        this.description = description;
         this.completed = completed;
     }
 
-    private boolean isValidTitle(String title) {
+    protected boolean isValidTitle(String title) {
         return title.length() >=1;
     }
 
-    private boolean isValidDescription(String description) {
-        return description.length() >= 0;
-    }
-
-    private boolean isValidDate(String date) {
+    protected boolean isValidDate(String date) {
         return date.matches("\\d{4}-\\d{2}-\\d{2}");
     }
 
-    public String getTitle() {
+    protected String getTitle() {
         return this.title;
     }
 
-    public String getDescription() {
+    protected String getDescription() {
         return this.description;
+    }
+
+    protected String getDate() {
+        return this.date;
+    }
+
+    public Boolean getCompleted() {
+        return this.completed;
     }
 
     public void setDescription(String d) {
@@ -54,31 +53,5 @@ public class TaskItem {
 
     public void setCompleted(boolean c) {
         completed = c;
-    }
-
-    public String getDate() {
-        return this.date;
-    }
-
-    public Boolean getCompleted() {
-        return this.completed;
-    }
-
-    class InvalidTitleException extends IllegalArgumentException {
-        public InvalidTitleException(String message) {
-            super(message);
-        }
-    }
-
-    class InvalidDescriptionException extends IllegalArgumentException {
-        public InvalidDescriptionException(String message) {
-            super(message);
-        }
-    }
-
-    class InvalidDateException extends IllegalArgumentException {
-        public InvalidDateException(String message) {
-            super(message);
-        }
     }
 }

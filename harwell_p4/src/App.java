@@ -21,9 +21,7 @@ public class App {
                     NewList();
                 }
                 case 2 -> {
-                    System.out.println("Enter the name of the list (without .txt) you would like to load in:");
-                    //String searchFile = (selection.nextLine() + ".txt");
-                    //loadFile(searchFile);
+                    FileList();
                 }
                 case 3 -> {
                     menu = false;
@@ -49,7 +47,7 @@ public class App {
     }
     private static void ListOperationMenu() {
 
-        System.out.println("      List Operation Menu");
+        System.out.println("\n      List Operation Menu");
         System.out.println("-------------------------------\n");
         System.out.println("1) View current list");
         System.out.println("2) Add a new item");
@@ -76,6 +74,30 @@ public class App {
                 case 5: n.markCompleted(); continue;
                 case 6: n.markUncompleted(); continue;
                 case 7: n.saveList(); continue;
+                case 8: return;
+            }
+        }
+    }
+
+    private static void FileList() {
+        System.out.println("Enter the name of the list (without .txt) you would like to load in:");
+        selection.nextLine(); //clear input buffer
+        String searchFile = (selection.nextLine() + ".txt");
+        App f = new App();
+        f.loadFile(searchFile);
+
+        while(true) {
+            ListOperationMenu();
+            int choice = selection.nextInt();
+
+            switch(choice) {
+                case 1: f.getTaskList(); continue;
+                case 2: f.processNewTask(); continue;
+                case 3: f.editTaskItem(); continue;
+                case 4: f.removeTask(); continue;
+                case 5: f.markCompleted(); continue;
+                case 6: f.markUncompleted(); continue;
+                case 7: f.saveList(); continue;
                 case 8: return;
             }
         }
@@ -108,7 +130,7 @@ public class App {
         getTaskList();
         System.out.println("Enter the index of the task you would like to change.");
         int index = selection.nextInt();
-        tasks.editListItem(getNewTaskItem(),index);
+        tasks.editListItem(index,getNewTaskItem());
         getTaskList();
     }
 
@@ -138,6 +160,15 @@ public class App {
         tasks.add(task);
     }
 
+    private void processFileTaskItems(String title, String description, String date) {
+
+        TaskItem task = null;
+
+        task = new TaskItem(title, description, date, false);
+
+        tasks.add(task);
+    }
+
     private TaskItem getNewTaskItem() {
         TaskItem task = null;
         while(true) {
@@ -149,12 +180,10 @@ public class App {
 
                 task = new TaskItem(title, description, date, false);
                 break;
-            } catch (TaskItem.InvalidTitleException ex) {
-                System.out.println("You entered an invalid name. All names must be at least 1 character in length. Try again");
-            } catch (TaskItem.InvalidDescriptionException ex) {
-                System.out.println("You entered an invalid description. Please try again");
-            } catch (TaskItem.InvalidDateException ex) {
-                System.out.println("All dates must follow the format YYYY-MM-DD. Please re-enter date and try again.");
+            } catch (InvalidTitleException ex) {
+                System.out.println("Titles must be at least 1 character in length. Please re-enter task info.");
+            } catch (InvalidDateException ex) {
+                System.out.println("All dates must follow the format YYYY-MM-DD. Please re-enter task info.");
             }
         }
         return task;
@@ -162,7 +191,7 @@ public class App {
 
     private void saveList() {
         selection.nextLine();
-        System.out.println("What would you like to name your save file?");
+        System.out.println("What would you like to name your save file? Do not include .txt in your name.");
         String filename = (selection.nextLine() + ".txt");
         tasks.save(filename);
         System.out.printf("Your list was saved as %s\n\n", filename);
@@ -185,9 +214,11 @@ public class App {
     }
 
     private void loadFile(String searchFile){
+        TaskItem task = null;
         try(Scanner search = new Scanner(Paths.get(searchFile))) {
-            while(search.hasNext()){
 
+            while(search.hasNext()){
+                processFileTaskItems(search.nextLine(), search.nextLine(), search.nextLine());
             }
         } catch(IOException | NoSuchElementException | IllegalStateException ex) {
             System.out.println("The file could not be found");
