@@ -60,8 +60,4 @@ class TaskItemTest {
         TaskItem task = new TaskItem("Task 1", "This is the first task", "2020-11-16",false);
         assertEquals("Task 1", task.getTitle());
     }
-
-
-
-
 }
