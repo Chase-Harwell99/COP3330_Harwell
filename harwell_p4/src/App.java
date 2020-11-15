@@ -24,7 +24,7 @@ public class App {
             }
         }
     }
-    
+
     private static int MainMenu() {
         System.out.println("       Main Menu         ");
         System.out.println("-----------------------\n");
@@ -50,6 +50,7 @@ public class App {
 
     }
 
+    //makes a new list
     private static void NewList() {
         TaskList n = new TaskList();
         while(true) {
@@ -69,6 +70,7 @@ public class App {
         }
     }
 
+    //makes a new list and inputs previous tasks from input file
     private static void FileList() {
         System.out.println("Enter the name of the list (without .txt) you would like to load in:");
         selection.nextLine(); //clear input buffer

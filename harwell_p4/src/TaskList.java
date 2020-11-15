@@ -33,7 +33,7 @@ public class TaskList {
     }
 
     protected TaskItem getCurrentItem(int index) {
-        TaskItem currentTask = null;
+        TaskItem currentTask;
         if(index >=0 && index <= getSize()) {
             currentTask = tasks.get(index);
         } else {
@@ -178,6 +178,7 @@ public class TaskList {
                 getTaskList();
                 System.out.println("Enter the index of the task you wish to remove from the list");
                 int removeIndex = selection.nextInt();
+                selection.nextLine();
                 removeListItem(removeIndex);
                 getTaskList();
                 break;
@@ -197,6 +198,7 @@ public class TaskList {
                 getIncompleteTaskListPrompt();
                 System.out.println("Enter the index of the task you would like to mark as complete.");
                 int completeIndex = selection.nextInt();
+                selection.nextLine();
                 markCompleted(completeIndex);
                 break;
             } catch (ListIsEmptyException ex) {
@@ -215,6 +217,7 @@ public class TaskList {
                 getCompletedTaskListPrompt();
                 System.out.println("Enter the index of the task that you would like to unmark as completed.");
                 int incompleteIndex = selection.nextInt();
+                selection.nextLine();
                 markUncompleted(incompleteIndex);
                 break;
             } catch (ListIsEmptyException ex) {
@@ -268,7 +271,8 @@ public class TaskList {
 
     private String getTitle() {
         System.out.println("Task Title: ");
-        return selection.nextLine();
+        String title = selection.nextLine();
+        return title;
     }
 
     private String getDescription() {

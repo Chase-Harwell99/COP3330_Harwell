@@ -24,10 +24,12 @@ public class TaskItem {
     }
 
     protected boolean isValidTitle(String title) {
+
         return title.length() >=1;
     }
 
     protected boolean isValidDate(String date) {
+
         return date.matches("\\d{4}-\\d{2}-\\d{2}");
     }
 
