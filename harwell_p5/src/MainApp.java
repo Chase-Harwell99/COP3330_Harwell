@@ -33,6 +33,5 @@ public class MainApp {
         System.out.println("3) Exit the program");
 
         return selection.nextInt();
-
     }
 }
